@@ -4,9 +4,11 @@
 #
 set -euo pipefail
 
-: "${GW_DB:=xbee}"
-: "${GW_DB_USER:=xbee}"
-: "${GW_DB_PASSWORD:=bayeos}"
+: "${GW_DB:?GW_DB is required}"
+: "${GW_DB_USER:?GW_DB_USER is required}"
+: "${GW_DB_PASSWORD:?GW_DB_PASSWORD is required}"
+: "${POSTGRES_USER:?POSTGRES_USER is required}"
+: "${POSTGRES_DB:?POSTGRES_DB is required}"
 
 echo "Creating gateway database ${GW_DB} and role ${GW_DB_USER} ..."
 
