@@ -10,40 +10,6 @@ image with the components required by `bayeos-gateway`:
 The image is intended for use with
 [bayeos-compose](../bayeos-compose/README.md).
 
-## Pull and Run
-
-Replace the image name with the Docker Hub namespace used for your release:
-
-```sh
-docker run -d --name bayeos-postgres \
-	-p 5432:5432 \
-	-e POSTGRES_DB=bayeos \
-	-e POSTGRES_USER=bayeos \
-	-e POSTGRES_PASSWORD=change-me \
-	-e GW_DB=xbee \
-	-e GW_DB_USER=xbee \
-	-e GW_DB_PASSWORD=change-me-too \
-	-v bayeos-postgres-data:/var/lib/postgresql/data \
-	bayceer/bayeos-postgres:latest
-```
-
-The primary database is available as `bayeos` and the gateway database as
-`xbee` with the defaults above.
-
-## Configuration
-
-| Variable | Default | Description |
-| --- | --- | --- |
-| `POSTGRES_DB` | `bayeos` | Primary database used by `bayeos-api`. |
-| `POSTGRES_USER` | `bayeos` | Primary database role. |
-| `POSTGRES_PASSWORD` | required | Password for the primary role. |
-| `GW_DB` | `xbee` | Second database used by `bayeos-gateway`. |
-| `GW_DB_USER` | `xbee` | Role that owns the gateway database. |
-| `GW_DB_PASSWORD` | `bayeos` | Password for the gateway role. |
-
-`POSTGRES_*` behaves as documented by the official PostgreSQL image. The
-`GW_*` variables are consumed by the bundled initialization script.
-
 ## Initialization and Persistence
 
 The gateway database and role are created by
