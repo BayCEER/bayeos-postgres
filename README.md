@@ -8,7 +8,7 @@ image with the components required by `bayeos-gateway`:
 - An initialization script that creates a second database for the gateway
 
 The image is intended for use with
-[bayeos-compose](../bayeos-compose/README.md).
+[bayeos-compose](https://github.com/BayCEER/bayeos-compose).
 
 ## Initialization and Persistence
 
@@ -16,26 +16,10 @@ The gateway database and role are created by
 `/docker-entrypoint-initdb.d/01-second-db.sh`. PostgreSQL runs initialization
 scripts only when `/var/lib/postgresql/data` is empty.
 
-Changing `GW_*` values after the data volume already exists does not alter the
-database or role. To apply different values, either manage the existing
-database manually or initialize a new data volume.
-
 ## Docker Compose
 
 The BayEOS Compose deployment selects the image through
 `BAYEOS_POSTGRES_IMAGE`:
-
-```env
-BAYEOS_POSTGRES_IMAGE=bayceer/bayeos-postgres:latest
-POSTGRES_PASSWORD=replace-with-a-strong-password
-GW_DB_PASSWORD=replace-with-a-different-strong-password
-```
-
-Then start the stack from `bayeos-compose`:
-
-```sh
-docker compose up -d postgresdb
-```
 
 ## Building Locally
 
